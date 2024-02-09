@@ -36,8 +36,8 @@ app.get('/api/:date', (req, res) => {
     }
   }
 
-  // if the passed string has a dash it is a gmt date
-  if(date.includes("-")){
+  // if the passed string has a dash, comma or slash it is a date according to format
+  if(date.includes("-") || date.includes("/") || date.includes(",")){
     let unix = new Date(date).getTime();
     let utc = new Date(date).toUTCString();
     if(invalidDate(unix,utc)){
